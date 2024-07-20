@@ -1,0 +1,230 @@
+<style>
+    table{
+        width:100%;
+        font-size:11px;
+    }
+.underline-text {
+border-bottom: 1px solid black;
+display: inline;
+}
+</style>
+
+{% if (filters.party_type && filters.party && filters.party_type != "" && filters.party.length == 1) %}
+<table><tbody>
+  <tr style="line-height: 0.7;">
+  <td width="40%" rowspan="2"><img src="/files/SO-logo-Black-Landscape.jpg" height="50"></td>
+  <td width=25% rowspan="2">&nbsp;</td>
+  <td align=right style="font-size:18px;font-weight:bold;">Statement Of Account</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td align=right style="font-size:12px;font-weight:bold;">As of: {{ frappe.datetime.str_to_user(filters.report_date) }}</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" style="font-size:14px;font-weight:bold;">OASIS PREMIUM FOOD & BEVERAGES TRADING LLC</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >201 Al Sehaa offices C wing Building Down Town ,Dubai</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Web :www.seouloasis.com</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Phone :43255221</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Email :sales@seouloasis.com</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >TRN :100544306200003</td>
+  </tr>
+  </tbody>
+  </table><br>
+
+
+<table >
+    <tr>
+        <td style="width:50%;">
+            {% var uniqueParties = [] %}
+            {% var uniqueCustomers = [] %}
+            {% if (filters.party_type && filters.party && filters.party_type != "" && filters.party.length == 1) %}
+              {% for i in data %}
+                {% if (!uniqueParties.includes(i.party)) %}
+                  {% uniqueParties.push(i.party) %}
+                  {% if (i.customer_name) %}
+    <table>
+      <tr>
+        <td>Customer:<br></td>
+        <td style="font-weight:bold">{{ i.customer_name }}</td>
+      </tr>
+    <tbody>
+      <tr>
+        <td>Address:</td>
+        <td>{{ data[0].address }}</td>
+      </tr>
+      <tr>
+        <td>TRN:</td>
+        <td>{{ data[0].trn }}</td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td>{{ data[0].mobile }}</td>
+      </tr>
+    </table>
+    {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+        </td>
+        <td style="width:50%;">
+          {% if (filters.party_type && filters.party && filters.party_type != "" && filters.party.length == 1) %}
+            <table>
+      <tr>
+        <td align=right>Date:</td>
+        <td>{{ frappe.datetime.str_to_user(filters.report_date) }}</td>
+      </tr></thead>
+    <tbody>
+      <tr>
+        <td align=right>Account Code:</td>
+        <td>100041<br></td>
+      </tr>
+      <tr>
+        <td align=right>Payment Type:</td>
+        <td>Debit</td>
+      </tr>
+      <tr>
+        <td align=right>Payment Terms:</td>
+        <td>{{ data[0].terms }}</td>
+      </tr>
+    </table>
+    {% endif %}
+        </td>
+    </tr>
+</table>
+
+
+<table>
+<tr>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">Doc No.</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Date</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Description</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >Original Amt</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Invoices</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Receipts</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">Balance</td>
+</tr>
+{% for(var i=0, l=data.length; i<l; i++) { %}
+<tr>
+
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">{%= data[i]["voucher_no"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["remarks"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= data[i]["invoiced"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;"></td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["paid"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">{%= data[i]["test"]%}</td>
+</tr>
+{% } %}
+</table>
+
+<table>
+  {% for(var i=0, l=data.length; i<l; i++) { %}
+      <tr>
+          {% if (i === l - 1) { %}
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">
+                  <span class="underline-text">0 - 30</span><br>{{ data[i].total_range1 }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
+                  <span class="underline-text">30 - 60</span><br>{{ data[i].total_range2 }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
+                  <span class="underline-text">60 - 90</span><br>{{ data[i].total_range3 }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
+                  <span class="underline-text">>90 </span><br>{{ data[i].total_range4 }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
+                  <span class="underline-text">On Account</span><br>{{ data[i].total_invoice_amount }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
+                  <span class="underline-text">PDC Cheques</span><br>{{ data[i].total_pdc_amount }}
+              </td>
+              <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">
+                  <span class="underline-text">Net Balance</span><br>{{ data[i].total_outstanding_amount }}
+              </td>
+          {% } else { %}
+              
+          {% } %}
+      </tr>
+  {% } %}
+</table>
+
+<br><br>
+
+<p style="font-size:10px"><b>THE AMOUNT INDICATED IN THIS STATEMENT IS LEGAL CONFIRMATION OF COMMERCIAL DEBT , UNLESS OBJECTED WITHIN<br>
+15 DAYS OF THE DATE OF STATEMENT. ALL TRANSACTIONS ARE SUBJECT TO DUBAI LAW AND DUBAI COURTS JURISDICTION. <br><br><br>
+This is a computer generated statement and does not require company stamp and signature.</b></p>
+
+{% else %}
+
+<table><tbody>
+  <tr style="line-height: 0.7;">
+  <td width="40%" rowspan="2"><img src="/files/SO-logo-Black-Landscape.jpg" height="50"></td>
+  <td width=25% rowspan="2">&nbsp;</td>
+  <td align=right style="font-size:18px;font-weight:bold;">Statement Of Account</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td align=right style="font-size:12px;font-weight:bold;">As of: {{ frappe.datetime.str_to_user(filters.report_date) }}</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" style="font-size:14px;font-weight:bold;">OASIS PREMIUM FOOD & BEVERAGES TRADING LLC</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >201 Al Sehaa offices C wing Building Down Town ,Dubai</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Web :www.seouloasis.com</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Phone :43255221</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >Email :sales@seouloasis.com</td>
+  </tr>
+  <tr style="line-height: 0.5;">
+  <td colspan="3" >TRN :100544306200003</td>
+  </tr>
+  </tbody>
+  </table><br>
+
+<table>
+  <tr>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">Doc No.</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Party</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Date</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Description</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >Original Amt</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Invoices</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">Receipts</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">Balance</td>
+  </tr>
+  {% for(var i=0, l=data.length; i<l; i++) { %}
+  <tr>
+  
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">{%= data[i]["voucher_no"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["party"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["remarks"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= data[i]["invoiced"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;"></td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["paid"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">{%= data[i]["outstanding"]%}</td>
+  </tr>
+  {% } %}
+  </table>
+  
+  <br><br>
+  
+  <p style="font-size:10px"><b>THE AMOUNT INDICATED IN THIS STATEMENT IS LEGAL CONFIRMATION OF COMMERCIAL DEBT , UNLESS OBJECTED WITHIN<br>
+  15 DAYS OF THE DATE OF STATEMENT. ALL TRANSACTIONS ARE SUBJECT TO DUBAI LAW AND DUBAI COURTS JURISDICTION. <br><br><br>
+  This is a computer generated statement and does not require company stamp and signature.</b></p>
+{% endif %}

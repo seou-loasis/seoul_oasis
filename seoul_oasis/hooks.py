@@ -4,6 +4,14 @@ app_publisher = "Craft Interactive"
 app_description = "custom app for seoul oasis"
 app_email = "info@craftinteractive.ae"
 app_license = "mit"
+
+fixtures = [
+    {
+    "dt": "Custom Field",
+    "filters": [["module","=","Seoul Oasis"]],
+    }
+]
+
 # required_apps = []
 
 # Includes in <head>
