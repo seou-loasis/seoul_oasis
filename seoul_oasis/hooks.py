@@ -12,6 +12,8 @@ fixtures = [
     }
 ]
 
+doctype_js = {"Sales Order" : "public/js/sales_order_item.js","Sales Invoice" : "public/js/sales_invoice_item.js"}
+
 # required_apps = []
 
 # Includes in <head>

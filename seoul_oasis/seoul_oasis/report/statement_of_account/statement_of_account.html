@@ -115,7 +115,11 @@ display: inline;
 {% for(var i=0, l=data.length; i<l; i++) { %}
 <tr>
 
-<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">{%= data[i]["voucher_no"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">
+    <a href="/app/{{ data[i].voucher_type.toLowerCase().replace(/ /g, '-') }}/{%= data[i].voucher_no %}">
+        {%= data[i].voucher_no %} 
+    </a>
+</td>
 <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]%}</td>
 <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["remarks"]%}</td>
 <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= data[i]["invoiced"]%}</td>
