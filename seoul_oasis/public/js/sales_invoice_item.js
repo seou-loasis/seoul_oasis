@@ -82,5 +82,25 @@ frappe.ui.form.on('Sales Invoice', {
     },
     before_save: function(frm) {
         set_sales_person(frm);
-    }
+    },
+    refresh: function(frm) {
+    
+        frm.set_query("custom_subsidiary", function() {
+            if (frm.doc.customer) {
+                return {
+                    filters: {
+                        "customer": frm.doc.customer
+                    }
+                };
+            } else {
+                return {
+                    filters: {
+                        "customer": ' '
+                    }
+                };
+            }
+        });
+        
+},
+
 });

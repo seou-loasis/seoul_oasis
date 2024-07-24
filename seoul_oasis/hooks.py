@@ -12,7 +12,10 @@ fixtures = [
     }
 ]
 
-doctype_js = {"Sales Order" : "public/js/sales_order_item.js","Sales Invoice" : "public/js/sales_invoice_item.js"}
+doctype_js = {"Sales Order" : "public/js/sales_order_item.js",
+              "Sales Invoice" : "public/js/sales_invoice_item.js",
+              "Address" : "public/js/address.js"
+              }
 
 # required_apps = []
 
