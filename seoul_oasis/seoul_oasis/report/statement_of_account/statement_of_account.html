@@ -120,12 +120,12 @@ display: inline;
         {%= data[i].voucher_no %} 
     </a>
 </td>
-<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]  %} </td>
 <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["remarks"]%}</td>
-<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= data[i]["invoiced"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= format_currency(data[i].invoiced)%}</td>
 <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;"></td>
-<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["paid"]%}</td>
-<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">{%= data[i]["test"]%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= format_currency(data[i].paid)%}</td>
+<td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">{%= format_currency(data[i].test)%}</td>
 </tr>
 {% } %}
 </table>
@@ -135,25 +135,25 @@ display: inline;
       <tr>
           {% if (i === l - 1) { %}
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;">
-                  <span class="underline-text">0 - 30</span><br>{{ data[i].total_range1 }}
+                  <span class="underline-text">0 - 30</span><br> {%= format_currency(data[i].total_range1)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
-                  <span class="underline-text">30 - 60</span><br>{{ data[i].total_range2 }}
+                  <span class="underline-text">30 - 60</span><br>{%= format_currency(data[i].total_range2)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
-                  <span class="underline-text">60 - 90</span><br>{{ data[i].total_range3 }}
+                  <span class="underline-text">60 - 90</span><br> {%= format_currency(data[i].total_range3)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
-                  <span class="underline-text">>90 </span><br>{{ data[i].total_range4 }}
+                  <span class="underline-text">>90 </span><br> {%= format_currency(data[i].total_range4)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
-                  <span class="underline-text">On Account</span><br>{{ data[i].total_invoice_amount }}
+                  <span class="underline-text">On Account</span><br>  {%= format_currency(data[i].total_invoice_amount)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">
-                  <span class="underline-text">PDC Cheques</span><br>{{ data[i].total_pdc_amount }}
+                  <span class="underline-text">PDC Cheques</span><br>  {%= format_currency(data[i].total_pdc_amount)%}
               </td>
               <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">
-                  <span class="underline-text">Net Balance</span><br>{{ data[i].total_outstanding_amount }}
+                  <span class="underline-text">Net Balance</span><br>  {%= format_currency(data[i].total_outstanding_amount)%}
               </td>
           {% } else { %}
               
@@ -218,10 +218,10 @@ This is a computer generated statement and does not require company stamp and si
   <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["party"]%}</td>
   <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["posting_date"]%}</td>
   <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["remarks"]%}</td>
-  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" >{%= data[i]["invoiced"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;" > {%= format_currency(data[i].invoiced)%}</td>
   <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;"></td>
-  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;">{%= data[i]["paid"]%}</td>
-  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">{%= data[i]["outstanding"]%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;"> {%= format_currency(data[i].paid)%}</td>
+  <td style="font-weight:bold;border-top:1px solid black;border-bottom:1px solid black;border-right:1px solid black;"> {%= format_currency(data[i].outstanding)%}</td>
   </tr>
   {% } %}
   </table>
