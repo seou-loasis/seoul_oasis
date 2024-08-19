@@ -9,6 +9,7 @@ display: inline;
 }
 </style>
 
+<!-- 
 {% if (filters.party_type && filters.party && filters.party_type != "" && filters.party.length == 1) %}
 <table><tbody>
   <tr style="line-height: 0.7;">
@@ -38,8 +39,10 @@ display: inline;
   <td colspan="3" >TRN :100544306200003</td>
   </tr>
   </tbody>
-  </table><br>
+  </table><br> -->
 
+  <center><h2><b>Statement Of Account</b></h2></center>
+  <center><h4><b>As of: {{ frappe.datetime.str_to_user(filters.report_date) }}</b></h4></center>
 
 <table >
     <tr>
