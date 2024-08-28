@@ -28,7 +28,8 @@
    "fetch_from": "customer.customer_name",
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "label": "Customer Name"
+   "label": "Customer Name",
+   "read_only": 1
   },
   {
    "fieldname": "subsidiary_name",
@@ -68,7 +69,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-28 10:19:42.902126",
+ "modified": "2024-08-28 16:30:27.665541",
  "modified_by": "Administrator",
  "module": "Seoul Oasis",
  "name": "Subsidiary",
