@@ -11,9 +11,8 @@
   "subsidiary_name",
   "tax_id",
   "column_break_vwvu",
-  "address",
-  "primary_address",
-  "subsidiary_id"
+  "subsidiary_id",
+  "address"
  ],
  "fields": [
   {
@@ -49,15 +48,8 @@
   },
   {
    "fieldname": "address",
-   "fieldtype": "Link",
-   "label": "Address",
-   "options": "Address"
-  },
-  {
-   "fieldname": "primary_address",
-   "fieldtype": "Text",
-   "label": "Primary Address",
-   "read_only": 1
+   "fieldtype": "Small Text",
+   "label": "Address"
   },
   {
    "fieldname": "subsidiary_id",
@@ -69,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-28 16:30:27.665541",
+ "modified": "2024-09-09 16:23:39.218396",
  "modified_by": "Administrator",
  "module": "Seoul Oasis",
  "name": "Subsidiary",
